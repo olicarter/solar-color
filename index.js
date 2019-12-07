@@ -29,47 +29,45 @@ import { getContrastText, getHSLValue, HSLToRGB } from "./src";
  * @param {number} lightness.dusk lightness at dusk
  * @returns {Object} returns object with color and contrastText properties
  */
-export default ({
-  hue = 210,
-  saturation = {
-    min: 10,
-    max: 90,
-    nadir: 33,
-    dawn: 66,
-    sunriseEnd: 100,
-    solarNoon: 33,
-    sunsetStart: 100,
-    dusk: 66
-  },
-  lightness = {
-    min: 10,
-    max: 90,
-    nadir: 0,
-    dawn: 0,
-    sunriseEnd: 66,
-    solarNoon: 100,
-    sunsetStart: 66,
-    dusk: 0
-  }
-}) => {
-  /**
-   * Get hue, saturation and lightness values
-   */
-  const hue = getHSLValue("hue");
+export default values => {
+  const {
+    hue = 210,
+    saturation = {
+      min: 10,
+      max: 90,
+      nadir: 33,
+      dawn: 66,
+      sunriseEnd: 100,
+      solarNoon: 33,
+      sunsetStart: 100,
+      dusk: 66
+    },
+    lightness = {
+      min: 10,
+      max: 90,
+      nadir: 0,
+      dawn: 0,
+      sunriseEnd: 66,
+      solarNoon: 100,
+      sunsetStart: 66,
+      dusk: 0
+    }
+  } = values;
 
-  const saturation =
-    (getHSLValue("saturation") / 100) *
-      (hslValues.saturation.max - hslValues.saturation.min) +
-    hslValues.saturation.min;
+  const h = getHSLValue(values, "hue");
 
-  const lightness =
-    (getHSLValue("lightness") / 100) *
-      (hslValues.lightness.max - hslValues.lightness.min) +
-    hslValues.lightness.min;
+  const s =
+    (getHSLValue(values, "saturation") / 100) *
+      (saturation.max - saturation.min) +
+    saturation.min;
 
-  const { r, g, b } = HSLToRGB(hue, saturation, lightness);
+  const l =
+    (getHSLValue(values, "lightness") / 100) * (lightness.max - lightness.min) +
+    lightness.min;
 
-  const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  const { r, g, b } = HSLToRGB(h, s, l);
+
+  const color = `hsl(${h}, ${s}%, ${l}%)`;
   const contrastText = getContrastText(r, g, b);
 
   return { color, contrastText };
