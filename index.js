@@ -29,10 +29,10 @@ import { getContrastText, getHSLValue, HSLToRGB } from "./src";
  * @param {number} lightness.dusk lightness at dusk
  * @returns {Object} returns object with color and contrastText properties
  */
-export default values => {
-  const {
-    hue = 210,
-    saturation = {
+export default () => {
+  const values = {
+    hue: 210,
+    saturation: {
       min: 10,
       max: 90,
       nadir: 33,
@@ -42,7 +42,7 @@ export default values => {
       sunsetStart: 100,
       dusk: 66
     },
-    lightness = {
+    lightness: {
       min: 10,
       max: 90,
       nadir: 0,
@@ -52,18 +52,19 @@ export default values => {
       sunsetStart: 66,
       dusk: 0
     }
-  } = values;
+  };
 
   const h = getHSLValue(values, "hue");
 
   const s =
     (getHSLValue(values, "saturation") / 100) *
-      (saturation.max - saturation.min) +
-    saturation.min;
+      (values.saturation.max - values.saturation.min) +
+    values.saturation.min;
 
   const l =
-    (getHSLValue(values, "lightness") / 100) * (lightness.max - lightness.min) +
-    lightness.min;
+    (getHSLValue(values, "lightness") / 100) *
+      (values.lightness.max - values.lightness.min) +
+    values.lightness.min;
 
   const { r, g, b } = HSLToRGB(h, s, l);
 

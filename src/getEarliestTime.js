@@ -1,3 +1,5 @@
+import { getTimestamp } from ".";
+
 /**
  * Get earliest time
  * @param {Object} obj Object with Date properties

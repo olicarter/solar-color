@@ -1,4 +1,8 @@
-import { getNextClosestTimeFromNow, getPreviousClosestTimeFromNow } from ".";
+import {
+  getNextClosestTimeFromNow,
+  getPreviousClosestTimeFromNow,
+  getSolarTimes
+} from ".";
 
 /**
  * Get dynamic value of hue, saturation or lightness
