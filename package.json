@@ -1,6 +1,6 @@
 {
   "name": "solar-color",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate color variants from solar time",
   "main": "index.js",
   "repository": {
