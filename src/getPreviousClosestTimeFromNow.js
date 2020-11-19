@@ -1,10 +1,12 @@
-import { getLatestTime, getSolarTimes, getTimestamp } from ".";
+import { getLatestTime } from './getLatestTime';
+import { getSolarTimes } from './getSolarTimes';
+import { getTimestamp } from './getTimestamp';
 
 /**
  * Get previous closest time from now
  * @param {Object} obj Object with Date properties
  */
-export default obj => {
+export const getPreviousClosestTimeFromNow = obj => {
   const now = Date.now();
 
   return Object.entries(obj).reduce((prev, curr) => {

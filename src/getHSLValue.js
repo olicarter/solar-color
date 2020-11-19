@@ -1,20 +1,18 @@
-import {
-  getNextClosestTimeFromNow,
-  getPreviousClosestTimeFromNow,
-  getSolarTimes
-} from ".";
+import { getNextClosestTimeFromNow } from './getNextClosestTimeFromNow';
+import { getPreviousClosestTimeFromNow } from './getPreviousClosestTimeFromNow';
+import { getSolarTimes } from './getSolarTimes';
 
 /**
  * Get dynamic value of hue, saturation or lightness
  * @param {Object} values
  * @param {string} type name of value to get
  */
-export default (values, type) => {
+export const getHSLValue = (values, type) => {
   const now = Date.now();
 
   const today = getSolarTimes(now, 51.5074, 0.1278);
 
-  if (typeof values[type] === "number") return values[type];
+  if (typeof values[type] === 'number') return values[type];
 
   const previousKey = getPreviousClosestTimeFromNow(today)[0];
   const nextKey = getNextClosestTimeFromNow(today)[0];

@@ -1,11 +1,11 @@
-import SunCalc from "suncalc";
+import SunCalc from 'suncalc';
 
-export default (time, latitude, longitude) =>
+export const getSolarTimes = (time, latitude, longitude) =>
   (({ nadir, dawn, sunriseEnd, solarNoon, sunsetStart, dusk }) => ({
     nadir,
     dawn,
     sunriseEnd,
     solarNoon,
     sunsetStart,
-    dusk
+    dusk,
   }))(SunCalc.getTimes(time, latitude, longitude));

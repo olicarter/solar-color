@@ -1,4 +1,4 @@
-import { getContrastText, getHSLValue, HSLToRGB } from "./src";
+import { getContrastText, getHSLValue, HSLToRGB } from './src';
 
 /**
  * An object containing desired values for hue, saturation and lightness at various times
@@ -29,8 +29,8 @@ import { getContrastText, getHSLValue, HSLToRGB } from "./src";
  * @param {number} lightness.dusk lightness at dusk
  * @returns {Object} returns object with color and contrastText properties
  */
-export default () => {
-  const values = {
+export const solarColor = (
+  values = {
     hue: 210,
     saturation: {
       min: 10,
@@ -40,7 +40,7 @@ export default () => {
       sunriseEnd: 100,
       solarNoon: 33,
       sunsetStart: 100,
-      dusk: 66
+      dusk: 66,
     },
     lightness: {
       min: 10,
@@ -50,19 +50,19 @@ export default () => {
       sunriseEnd: 66,
       solarNoon: 100,
       sunsetStart: 66,
-      dusk: 0
-    }
-  };
-
-  const h = getHSLValue(values, "hue");
+      dusk: 0,
+    },
+  }
+) => {
+  const h = getHSLValue(values, 'hue');
 
   const s =
-    (getHSLValue(values, "saturation") / 100) *
+    (getHSLValue(values, 'saturation') / 100) *
       (values.saturation.max - values.saturation.min) +
     values.saturation.min;
 
   const l =
-    (getHSLValue(values, "lightness") / 100) *
+    (getHSLValue(values, 'lightness') / 100) *
       (values.lightness.max - values.lightness.min) +
     values.lightness.min;
 
@@ -73,3 +73,7 @@ export default () => {
 
   return { color, contrastText };
 };
+
+window.solarColor = solarColor;
+
+export default solarColor;

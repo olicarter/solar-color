@@ -6,7 +6,7 @@
  * @param   {number} l lightness
  * @returns {Object} returns object with r, g and b properties
  */
-export default (h, s, l) => {
+export const HSLToRGB = (h, s, l) => {
   // Must be fractions of 1
   s /= 100;
   l /= 100;
